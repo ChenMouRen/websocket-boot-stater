@@ -57,23 +57,23 @@ public class DemoApplication {
 + 自定义WebSocket路径映射  
 1.新建类继承com.chen.webflux.websocket.DefaultWebSocketHandler
 ```java
-    import com.chen.webflux.websocket.annotation.EnableWebSocket;
+    import com.chen.webflux.websocket.annotation.WebSocketMapping;
     import org.springframework.stereotype.Component;
-    import com.chen.webflux.websocket.DefaultWebSocketHandler;
+    import org.springframework.web.reactive.socket.WebSocketHandler; 
 
     @Component
-    @EnableWebSocket
+    @WebSocketMapping("{/url}")
     public class MyWebSocketHandler extends DefaultWebSocketHandler{
     }
 ```
 2.新建或类实现org.springframework.web.reactive.socket.WebSocketHandler接口,并实现其方法
 ```java
-    import com.chen.webflux.websocket.annotation.EnableWebSocket;
+    import com.chen.webflux.websocket.annotation.WebSocketMapping;
     import org.springframework.stereotype.Component;
     import org.springframework.web.reactive.socket.WebSocketHandler; 
 
     @Component
-    @EnableWebSocket
+    @WebSocketMapping("{/url}")
     public class MyWebSocketHandler implements WebSocketHandler{
 
         @Override
@@ -84,4 +84,4 @@ public class DemoApplication {
 
     }
 ```
-3.在类上加上com.chen.webflux.websocket.annotation.EnableWebSocket注解,同时让Spring扫描到该类  
+3.在类上加上com.chen.webflux.websocket.annotation.WebSocketMapping注解,同时让Spring扫描到该类,其中value为对应的路径  
